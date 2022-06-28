@@ -1,0 +1,33 @@
+---
+name:  ztest
+title: One-Sample Z-Test (Summary)
+menuGroup: ctools
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: phat
+      title: Sample Proportion
+      type: Number
+
+    - name: p0
+      title: Null Hypothesis Value
+      type: Number
+      default: 0.50
+
+    - name: n
+      title: Sample Size
+      type: Integer
+
+    - name: ha
+      title: Alternative hypothesis
+      type: List
+      options:
+        - title: Not Equal To
+          name:  notequal
+        - title: Less Than
+          name:  lessthan
+        - title: Greater Than
+          name:  greaterthan
+      default: notequal
+...
