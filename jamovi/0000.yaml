@@ -17,11 +17,6 @@ analyses:
     ns: ctools
     menuGroup: ctools
     menuTitle: One-Sample Z-Test (Summary)
-  - title: One-Sample Z-Test (Data)
-    name: ztest1data
-    ns: ctools
-    menuGroup: ctools
-    menuTitle: One-Sample Z-Test (Data)
 usesNative: true
 minApp: 1.0.8
 
