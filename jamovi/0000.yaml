@@ -12,11 +12,11 @@ description: >-
   More about what it does (maybe more than one line) Use four spaces when
   indenting paragraphs within the Description.
 analyses:
-  - title: One-Sample Z-Test (Summary)
+  - title: One-Sample Z-Test
     name: ztest
     ns: ctools
     menuGroup: ctools
-    menuTitle: One-Sample Z-Test (Summary)
+    menuTitle: One-Sample Z-Test
 usesNative: true
 minApp: 1.0.8
 

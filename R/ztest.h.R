@@ -7,7 +7,7 @@ ztestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(
             phat = NULL,
-            p0 = 0.5,
+            p0 = NULL,
             n = NULL,
             ha = "notequal", ...) {
 
@@ -22,8 +22,7 @@ ztestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 phat)
             private$..p0 <- jmvcore::OptionNumber$new(
                 "p0",
-                p0,
-                default=0.5)
+                p0)
             private$..n <- jmvcore::OptionInteger$new(
                 "n",
                 n)
@@ -57,7 +56,7 @@ ztestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "ztestResults",
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$.items[["text"]]),
+        ztest = function() private$.items[["ztest"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -65,10 +64,32 @@ ztestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="",
                 title="One-Sample Z-Test")
-            self$add(jmvcore::Preformatted$new(
+            self$add(jmvcore::Table$new(
                 options=options,
-                name="text",
-                title="One-Sample Z-Test"))}))
+                name="ztest",
+                title="One-Sample Z-Test",
+                rows=1,
+                columns=list(
+                    list(
+                        `name`="phat", 
+                        `type`="number", 
+                        `title`="Sample Proportion"),
+                    list(
+                        `name`="z", 
+                        `type`="number"),
+                    list(
+                        `name`="se", 
+                        `type`="number"),
+                    list(
+                        `name`="p", 
+                        `type`="number", 
+                        `title`="p-value", 
+                        `format`="zto,pvalue")),
+                clearWith=list(
+                    "phat",
+                    "p0",
+                    "n",
+                    "ha")))}))
 
 ztestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "ztestBase",
@@ -90,7 +111,7 @@ ztestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 requiresMissings = FALSE)
         }))
 
-#' One-Sample Z-Test (Summary)
+#' One-Sample Z-Test
 #'
 #' 
 #' @param phat .
@@ -99,13 +120,19 @@ ztestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param ha .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$ztest} \tab \tab \tab \tab \tab a table \cr
 #' }
+#'
+#' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
+#'
+#' \code{results$ztest$asDF}
+#'
+#' \code{as.data.frame(results$ztest)}
 #'
 #' @export
 ztest <- function(
     phat,
-    p0 = 0.5,
+    p0,
     n,
     ha = "notequal") {
 

@@ -1,4 +1,3 @@
-
 # This file is a generated template, your changes will not be overwritten
 
 ztestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
@@ -18,7 +17,15 @@ ztestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                 res <- paste0("The z-statistic is: ", round(z, 4),
                               "\nThe SE is: ", round(se, 4),
                               "\nThe p-value is: ", round(p, 4), "\n")
-                self$results$text$setContent(res)
+                if(!(0 %in% c(self$options$phat, self$options$p0, self$options$n))){
+                table <- self$results$ztest
+                table$setRow(rowNo=1, values=list(
+                    phat = self$options$phat, 
+                    z=z,
+                    se=se,
+                    p=p))
+                }
+                
             # `self$data` contains the data
             # `self$options` contains the options
             # `self$results` contains the results object (to populate)
