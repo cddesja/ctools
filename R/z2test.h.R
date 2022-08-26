@@ -89,18 +89,18 @@ z2testResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "z2testResults",
     inherit = jmvcore::Group,
     active = list(
-        restab = function() private$.items[["restab"]],
-        conftab = function() private$.items[["conftab"]]),
+        z2restab = function() private$.items[["z2restab"]],
+        z2conftab = function() private$.items[["z2conftab"]]),
     private = list(),
     public=list(
         initialize=function(options) {
             super$initialize(
                 options=options,
                 name="",
-                title="Difference in Proportions Test")
+                title="Test for a Difference in Proportions")
             self$add(jmvcore::Table$new(
                 options=options,
-                name="restab",
+                name="z2restab",
                 title="Hypothesis Test",
                 rows=1,
                 columns=list(
@@ -120,15 +120,16 @@ z2testResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `title`="p-value", 
                         `format`="zto,pvalue")),
                 clearWith=list(
-                    "phat1",
-                    "phat2",
+                    "c1",
+                    "c2",
                     "p0",
-                    "n",
+                    "n1",
+                    "n2",
                     "ha",
                     "showci")))
             self$add(jmvcore::Table$new(
                 options=options,
-                name="conftab",
+                name="z2conftab",
                 title="Confidence Interval",
                 visible="(showci)",
                 rows=1,
@@ -187,15 +188,15 @@ z2testBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param cilevel .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$restab} \tab \tab \tab \tab \tab a table \cr
-#'   \code{results$conftab} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$z2restab} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$z2conftab} \tab \tab \tab \tab \tab a table \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
 #'
-#' \code{results$restab$asDF}
+#' \code{results$z2restab$asDF}
 #'
-#' \code{as.data.frame(results$restab)}
+#' \code{as.data.frame(results$z2restab)}
 #'
 #' @export
 z2test <- function(

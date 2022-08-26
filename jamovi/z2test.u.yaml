@@ -14,13 +14,13 @@ children:
     margin: large
     children:
       - type: TextBox
-        name: c2
+        name: n1
         format: number
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
-        name: n1
+        name: c2
         format: number
   - type: LayoutBox
     margin: large

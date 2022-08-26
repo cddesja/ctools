@@ -1,10 +1,10 @@
 ---
 name:  z2test
-title: Difference in Proportions Test
+title: Test for a Difference in Proportions
 jrs:   '1.1'
 
 items:
-    - name:  restab
+    - name:  z2restab
       title: "Hypothesis Test"
       type: Table
       rows:  1
@@ -21,14 +21,15 @@ items:
           title: "p-value"
           format: zto,pvalue
       clearWith:  # <-- here
-        - phat1
-        - phat2
+        - c1
+        - c2
         - p0
-        - n
+        - n1
+        - n2
         - ha
         - showci
       
-    - name:  conftab
+    - name:  z2conftab
       title: "Confidence Interval"
       type: Table
       visible: (showci)
