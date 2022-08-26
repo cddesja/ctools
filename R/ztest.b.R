@@ -5,30 +5,38 @@ ztestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     inherit = ztestBase,
     private = list(
         .run = function() {
-                se <- sqrt((self$options$p0 * (1 - self$options$p0) / self$options$n))
-                z <- (self$options$phat - self$options$p0) / se
-                ha <- self$options$ha
-                if (ha == "lessthan")
-                    p <- pnorm(z, lower.tail = TRUE)
-                if (ha == "greaterthan")
-                    p <- pnorm(z, lower.tail = FALSE)
-                if (ha == "notequal")
-                    p <- pnorm(abs(z), lower.tail = FALSE) * 2
-                res <- paste0("The z-statistic is: ", round(z, 4),
-                              "\nThe SE is: ", round(se, 4),
-                              "\nThe p-value is: ", round(p, 4), "\n")
-                if(!(0 %in% c(self$options$phat, self$options$p0, self$options$n))){
-                table <- self$results$ztest
-                table$setRow(rowNo=1, values=list(
-                    phat = self$options$phat, 
-                    z=z,
-                    se=se,
-                    p=p))
-                }
-                
-            # `self$data` contains the data
-            # `self$options` contains the options
-            # `self$results` contains the results object (to populate)
+          restab <- self$results$get("restab")
+          conftab <- self$results$get("conftab")
+          
+          ## the standard results table
+          se <- sqrt((self$options$p0 * (1 - self$options$p0) / self$options$n))
+          z <- (self$options$phat - self$options$p0) / se
+          ha <- self$options$ha
+          if (ha == "lessthan")
+            p <- pnorm(z, lower.tail = TRUE)
+          if (ha == "greaterthan")
+            p <- pnorm(z, lower.tail = FALSE)
+          if (ha == "notequal")
+            p <- pnorm(abs(z), lower.tail = FALSE) * 2
+          
+          if(!(0 %in% c(self$options$phat, self$options$p0, self$options$n))){
+            restab$setRow(rowNo=1, values=list(
+              phat = self$options$phat, 
+              z=z,
+              se=se,
+              p=p))
+            if(self$options$showci){
+              se_ci <- sqrt((self$options$phat * (1 - self$options$phat) / self$options$n))
+              lvl <- (100 - ((100 - self$options$cilevel) / 2)) / 100
+              lwr <-  self$options$phat - qnorm(lvl) * se_ci
+              uppr <- self$options$phat + qnorm(lvl) * se_ci
+              conftab$setRow(rowNo=1, values=list(
+                lvl = paste0(self$options$cilevel, "%"),
+                lwr = lwr,
+                uppr = uppr))
+            }
+          }
 
+          
         })
 )

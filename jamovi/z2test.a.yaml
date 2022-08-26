@@ -1,25 +1,32 @@
 ---
-name:  ztest
-title: Test for a Single Proportion
+name:  z2test
+title: Test for a Difference in Proportions
 menuGroup: ctools
 version: '1.0.0'
 jas: '1.2'
 
 options:
-    - name: phat
-      title: Sample Proportion
+    - name: c1
+      title: Number of Successes in Sample 1
       type: Number
       
-
+    - name: c2
+      title: Number of Successes in Sample 2
+      type: Number    
+      
+    - name: n1
+      title: Sample Size for Sample 1
+      type: Integer
+      
+    - name: n2
+      title: Sample Size for Sample 2
+      type: Integer  
+      
     - name: p0
       title: Null Hypothesis Value
       type: Number
-      
-
-    - name: n
-      title: Sample Size
-      type: Integer
-
+      default: 0
+    
     - name: ha
       title: Alternative hypothesis
       type: List

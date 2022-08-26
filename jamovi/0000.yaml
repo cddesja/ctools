@@ -1,22 +1,27 @@
 ---
-title: What the Package Does (Title Case)
+title: Tools for Introductory Statistics
 name: ctools
-version: 0.0.0
+version: 0.0.1
 jms: '1.0'
 authors:
-  - Who wrote it
-maintainer: The package maintainer <yourself@somewhere.net>
+  - Christopher Desjardins
+maintainer: Christopher Desjardins <cddesjardins@gmail.com>
 date: '1970-01-01'
 type: R
 description: >-
-  More about what it does (maybe more than one line) Use four spaces when
-  indenting paragraphs within the Description.
+  This package test of proportions and means and other helpful tools for
+  learning statistics.
 analyses:
-  - title: One-Sample Z-Test
+  - title: Test for a Single Proportion
     name: ztest
     ns: ctools
     menuGroup: ctools
-    menuTitle: One-Sample Z-Test
+    menuTitle: Test for a Single Proportion
+  - title: Test for a Difference in Proportions
+    name: z2test
+    ns: ctools
+    menuGroup: ctools
+    menuTitle: Test for a Difference in Proportions
 usesNative: true
 minApp: 1.0.8
 

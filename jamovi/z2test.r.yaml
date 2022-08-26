@@ -1,6 +1,6 @@
 ---
-name:  ztest
-title: Test for a Single Proportion
+name:  z2test
+title: Difference in Proportions Test
 jrs:   '1.1'
 
 items:
@@ -9,9 +9,9 @@ items:
       type: Table
       rows:  1
       columns:
-        - name: phat
+        - name: diff_phat
           type: number
-          title: "Sample Proportion"
+          title: "Difference in Proportions"
         - name: z
           type: number
         - name: se
@@ -21,7 +21,8 @@ items:
           title: "p-value"
           format: zto,pvalue
       clearWith:  # <-- here
-        - phat
+        - phat1
+        - phat2
         - p0
         - n
         - ha
@@ -43,12 +44,11 @@ items:
           type: number
           title: "Upper"
       clearWith:  # <-- here
-        - phat
+        - phat1
+        - phat2
         - p0
         - n
         - ha
         - showci
         - cilevel
-      
-
 ...
