@@ -1,23 +1,27 @@
 ---
-name:  ztest
-title: Test for a Single Proportion
+name:  ttest
+title: Test for a Single or Paired Mean
 menuGroup: ctools
 version: '1.0.0'
 jas: '1.2'
 
 options:
-    - name: phat
-      title: Sample Proportion
+    - name: xbar
+      title: Sample Mean
+      type: Number
+
+    - name: s
+      title: Sample Standard Deviation
       type: Number
       
     - name: n
       title: Sample Size
       type: Integer
 
-    - name: p0
+    - name: mu0
       title: Null Hypothesis Value
       type: Number
-      
+    
     - name: ha
       title: Alternative hypothesis
       type: List

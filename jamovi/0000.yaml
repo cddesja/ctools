@@ -22,6 +22,16 @@ analyses:
     ns: ctools
     menuGroup: ctools
     menuTitle: Test for a Difference in Proportions
+  - title: Test for a Single or Paired Mean
+    name: ttest
+    ns: ctools
+    menuGroup: ctools
+    menuTitle: Test for a Single or Paired Mean
+  - title: Test for a Difference in Means
+    name: t2test
+    ns: ctools
+    menuGroup: ctools
+    menuTitle: Test for a Difference in Means
 usesNative: true
 minApp: 1.0.8
 

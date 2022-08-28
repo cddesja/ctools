@@ -1,6 +1,6 @@
 ---
-name:  ztest
-title: Test for a Single Proportion
+name:  ttest
+title: Test for a Single or Paired Mean
 jrs:   '1.1'
 
 items:
@@ -9,11 +9,12 @@ items:
       type: Table
       rows:  1
       columns:
-        - name: phat
+        - name: xbar
           type: number
-          title: "Sample Proportion"
-        - name: z
+          title: "Sample Mean"
+        - name: tstat
           type: number
+          title: "t"
         - name: se
           type: number
           title: "SE"
@@ -22,8 +23,9 @@ items:
           title: "p-value"
           format: zto,pvalue
       clearWith:  # <-- here
-        - phat
-        - p0
+        - xbar
+        - s
+        - mu0
         - n
         - ha
         - showci
@@ -46,8 +48,9 @@ items:
           title: "Upper"
           format: zto, pvalue
       clearWith:  # <-- here
-        - phat
-        - p0
+        - xbar
+        - s
+        - mu0
         - n
         - ha
         - showci

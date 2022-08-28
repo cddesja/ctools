@@ -16,6 +16,7 @@ items:
           type: number
         - name: se
           type: number
+          title: "SE"
         - name: p
           type: number
           title: "p-value"
@@ -23,7 +24,6 @@ items:
       clearWith:  # <-- here
         - c1
         - c2
-        - p0
         - n1
         - n2
         - ha
@@ -41,13 +41,14 @@ items:
         - name: lwr
           type: number
           title: "Lower"
+          format: zto, pvalue
         - name: uppr
           type: number
           title: "Upper"
+          format: zto, pvalue
       clearWith:  # <-- here
         - phat1
         - phat2
-        - p0
         - n
         - ha
         - showci

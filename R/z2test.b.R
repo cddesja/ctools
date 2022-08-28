@@ -13,7 +13,7 @@ z2testClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         phat2 <- self$options$c2 / self$options$n2
         pooled_p <- (self$options$c1 + self$options$c2) / (self$options$n1 + self$options$n2)
         se <- sqrt(pooled_p * (1 - pooled_p) / self$options$n1 + pooled_p * (1 - pooled_p) / self$options$n2)
-        z <- (phat1 - phat2 - self$options$p0) / se
+        z <- (phat1 - phat2) / se
         ha <- self$options$ha
         
         if (ha == "lessthan")

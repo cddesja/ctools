@@ -1,5 +1,5 @@
-title: Test for a Difference in Proportions
-name: ztest
+title: Test for a Single or Paired Mean
+name: ttest
 jus: '3.0'
 stage: 0
 compilerMode: tame
@@ -8,26 +8,26 @@ children:
     margin: large
     children:
       - type: TextBox
-        name: c1
+        name: xbar
         format: number
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
-        name: n1
+        name: s
         format: number
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
-        name: c2
+        name: 'n'
         format: number
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
-        name: n2
-        format: number       
+        name: mu0
+        format: number
   - type: LayoutBox
     margin: large
     children:

@@ -7,8 +7,8 @@ ztestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(
             phat = NULL,
-            p0 = NULL,
             n = NULL,
+            p0 = NULL,
             ha = "notequal",
             showci = FALSE,
             cilevel = 95, ...) {
@@ -22,12 +22,12 @@ ztestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..phat <- jmvcore::OptionNumber$new(
                 "phat",
                 phat)
-            private$..p0 <- jmvcore::OptionNumber$new(
-                "p0",
-                p0)
             private$..n <- jmvcore::OptionInteger$new(
                 "n",
                 n)
+            private$..p0 <- jmvcore::OptionNumber$new(
+                "p0",
+                p0)
             private$..ha <- jmvcore::OptionList$new(
                 "ha",
                 ha,
@@ -48,23 +48,23 @@ ztestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 max=99.5)
 
             self$.addOption(private$..phat)
-            self$.addOption(private$..p0)
             self$.addOption(private$..n)
+            self$.addOption(private$..p0)
             self$.addOption(private$..ha)
             self$.addOption(private$..showci)
             self$.addOption(private$..cilevel)
         }),
     active = list(
         phat = function() private$..phat$value,
-        p0 = function() private$..p0$value,
         n = function() private$..n$value,
+        p0 = function() private$..p0$value,
         ha = function() private$..ha$value,
         showci = function() private$..showci$value,
         cilevel = function() private$..cilevel$value),
     private = list(
         ..phat = NA,
-        ..p0 = NA,
         ..n = NA,
+        ..p0 = NA,
         ..ha = NA,
         ..showci = NA,
         ..cilevel = NA)
@@ -98,7 +98,8 @@ ztestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="number"),
                     list(
                         `name`="se", 
-                        `type`="number"),
+                        `type`="number", 
+                        `title`="SE"),
                     list(
                         `name`="p", 
                         `type`="number", 
@@ -124,11 +125,13 @@ ztestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="lwr", 
                         `type`="number", 
-                        `title`="Lower"),
+                        `title`="Lower", 
+                        `format`="zto, pvalue"),
                     list(
                         `name`="uppr", 
                         `type`="number", 
-                        `title`="Upper")),
+                        `title`="Upper", 
+                        `format`="zto, pvalue")),
                 clearWith=list(
                     "phat",
                     "p0",
@@ -161,8 +164,8 @@ ztestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param phat .
-#' @param p0 .
 #' @param n .
+#' @param p0 .
 #' @param ha .
 #' @param showci .
 #' @param cilevel .
@@ -181,8 +184,8 @@ ztestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 ztest <- function(
     phat,
-    p0,
     n,
+    p0,
     ha = "notequal",
     showci = FALSE,
     cilevel = 95) {
@@ -193,8 +196,8 @@ ztest <- function(
 
     options <- ztestOptions$new(
         phat = phat,
-        p0 = p0,
         n = n,
+        p0 = p0,
         ha = ha,
         showci = showci,
         cilevel = cilevel)
